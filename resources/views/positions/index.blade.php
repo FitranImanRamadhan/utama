@@ -18,7 +18,7 @@
     <tbody class="table-succes ">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nama</th>
+            <th scope="col">Namaa</th>
             <th scope="col">Keterangan</th>
             <th scope="col">Alias</th>
             <th scope="col">Aksi</th>
