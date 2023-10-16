@@ -58,6 +58,19 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Profile
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{ route('logout') }}" style="color: #dc3545;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#" style="color: #007bff;"><i class="fas fa-user"></i> Something else here</a></li>
+    </ul>
+</li>
+
             </div>
         </div>
     </nav>

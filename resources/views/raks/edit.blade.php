@@ -1,4 +1,4 @@
-@extends('app')
+@extends('tmp')
 @section('content')
 
 <form action="{{ route('raks.update', $rak->no_inventaris) }}" method="POST" enctype="multipart/form-data">
