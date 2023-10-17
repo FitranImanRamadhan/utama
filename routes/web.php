@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RakController;
 use App\Http\Controllers\BarangController;
+use App\Models\Departements;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::middleware('auth')->group(
         Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
         Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
         Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
+        Route::get('departement/export-excel', [DepartementController::class, 'exportExcel'])->name('departement.exportExcel');
         Route::resource('raks', RAKController::class);
         Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
         Route::resource('barangs', BarangController::class);

@@ -7,7 +7,7 @@
                 <div class="col-md-8 col-lg-6 col-xxl-3">
                     <div class="card mb-0">
                         <div class="card-body">
-                            <h2 class="text-center">MOZIPP</h2>
+                            <h2 class="text-center">MOJIPP</h2>
                             @if(session('success'))
                             <p class="alert alert-success">{{ session('success') }}</p>
                             @endif
@@ -26,8 +26,6 @@
                                     <label>Password <span class="text-danger">*</span></label>
                                     <input class="form-control" type="password" name="password" />
                                 </div>
-                                <p style="font-size:small;">Tidak punya akun? Klik <a href="/register" style="color: blue; text-decoration: none; cursor: pointer;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">disini</a></p>
-
                                 <div class="mb-3">
                                     <div class="text-center">
                                     <button class="btn btn-primary">Login</button>

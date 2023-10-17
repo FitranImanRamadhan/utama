@@ -9,7 +9,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <link rel="stylesheet" href="../assets/css/styles.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+    <style>
+      .dropdown-item:hover {
+    background-color: #5D87FF;
+    color: white; /* Untuk mengubah warna teks menjadi putih saat di sorot */
+}
+    </style>
 </head>
 
 <body>
@@ -22,7 +28,7 @@
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="./index.html" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/logo2.png" width="180" alt="" />
+            <img src="{{asset('assets/images/logos/logo2.png')}}" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -45,7 +51,7 @@
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Data Master</span>
+              <span class="hide-menu">Tabel Data</span>
             </li>
             @if(Auth()->user()->position == "1")
             <li class="sidebar-item">
@@ -73,7 +79,13 @@
                 <span class="hide-menu">Jabatan</span>
               </a>
             </li>
-            @if(Auth()->user()->position == "1")
+            
+            <div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Master
+  </button>
+  <ul class="dropdown-menu">
+  @if(Auth()->user()->position == "1")
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ route('barangs.index') }}" aria-expanded="false">
                 <span>
@@ -93,6 +105,8 @@
               </a>
             </li>
             @endif
+  </ul>
+</div>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">AUTH</span>
@@ -137,11 +151,11 @@
           <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
             <div class="d-flex">
               <div class="unlimited-access-title me-3">
-                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
-                <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
+                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Money</h6>
+                <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Uang</a>
               </div>
               <div class="unlimited-access-img">
-                <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
+                <img src="{{ asset('assets/images/backgrounds/rocket.png')}}" alt="" class="img-fluid">
               </div>
             </div>
           </div>
@@ -171,11 +185,10 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                  <img src="{{ asset('assets/images/profile/user-1.jpg')}}" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
@@ -213,13 +226,13 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     @yield('js')
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/sidebarmenu.js"></script>
-  <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-  <script src="../assets/js/dashboard.js"></script>
+  <script src="{{ asset ('assets/libs/jquery/dist/jquery.min.js')}}')}}"></script>
+  <script src="{{ asset ('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset ('assets/js/sidebarmenu.js')}}"></script>
+  <script src="{{ asset ('assets/js/app.min.js')}}"></script>
+  <script src="{{ asset ('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
+  <script src="{{ asset ('assets/libs/simplebar/dist/simplebar.js')}}"></script>
+  <script src="{{ asset ('assets/js/dashboard.js')}}"></script>
   
 </body>
 

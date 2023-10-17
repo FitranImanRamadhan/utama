@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportDepartements;
 use App\Models\Departements;
 use Illuminate\Http\Request;
 use App\Models\User;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class DepartementController extends Controller
 {
@@ -83,5 +86,9 @@ class DepartementController extends Controller
         $departements = Departements::orderBy('id', 'asc')->get();
         $pdf = PDF::loadView('departements.pdf', compact(['departements', 'title']));
         return $pdf->stream('laporan-departement-pdf');
+    }
+    public function exportExcel()
+    {
+        return Excel::download(new ExportDepartements, 'Departements.xlsx');
     }
 }

@@ -6,12 +6,16 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
-<div class="text-end mb-2">
-    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('departements.exportPdf') }}">Export</a>
+<br>
+<div class="d-flex justify-content-between mb-2">
+    <a class="btn btn-success" href="{{ route('departements.create') }}">Add Departement</a>
+    <div>
+        <a class="btn btn-success" href="{{ route('departement.exportExcel') }}">Export Excel</a>
+        <a class="btn btn-success" href="{{ route('departements.exportPdf') }}">Export PDF</a>
+    </div>
 </div>
-<div class="text-end mb-2">
-    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('departements.create') }}">Add Departement</a>
-</div>
+
+
 <br>
 <table id="example" class="table table-striped table-primary">
     <thead>
