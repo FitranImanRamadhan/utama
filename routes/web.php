@@ -19,8 +19,9 @@ use App\Models\Departements;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+Route::get('/', function () {
+    return view('welcome', ['title' => 'Welcome']);
+})->name('welcome')->middleware('guest'); // Tambahkan middleware 'guest'
 
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
@@ -28,28 +29,27 @@ Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'login_action'])->name('login.action');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->group(
-    function () {
-        Route::get('/', function () {
-            return view('home', ['title' => 'Home']);
-        })->name('home');
-        Route::get('password', [UserController::class, 'password'])->name('password');
-        Route::post('password', [UserController::class, 'password_action'])->name('password.action');
-        Route::get('logout', [UserController::class, 'logout'])->name('logout');
+Route::middleware('auth')->group(function () {
+    Route::get('home', function () {
+        return view('home', ['title' => 'Home']);
+    })->name('home');
+    Route::get('password', [UserController::class, 'password'])->name('password');
+    Route::post('password', [UserController::class, 'password_action'])->name('password.action');
+    
+    // Route Position
+    Route::resource('positions', PositionController::class);
+    Route::resource('departements', DepartementController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('barangs', BarangController::class);
+    Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
+    Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
+    Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
+    Route::get('departement/export-excel', [DepartementController::class, 'exportExcel'])->name('departement.exportExcel');
+    Route::resource('raks', RAKController::class);
+    Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
+    Route::resource('barangs', BarangController::class);
+    Route::get('chart-line', [RAKController::class, 'chartLine'])->name('raks.chartLine');
+    Route::get('chart-line-ajax', [RAKController::class, 'chartLineAjax'])->name('raks.chartLineAjax');
+});
 
-        // Route Position
-        Route::resource('positions', PositionController::class);
-        Route::resource('departements', DepartementController::class);
-        Route::resource('users', UserController::class);
-        Route::resource('barangs', BarangController::class);
-        Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
-        Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
-        Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
-        Route::get('departement/export-excel', [DepartementController::class, 'exportExcel'])->name('departement.exportExcel');
-        Route::resource('raks', RAKController::class);
-        Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
-        Route::resource('barangs', BarangController::class);
-        Route::get('chart-line', [RAKController::class, 'chartLine'])->name('raks.chartLine');
-        Route::get('chart-line-ajax', [RAKController::class, 'chartLineAjax'])->name('raks.chartLineAjax');
-    }
-);
+
