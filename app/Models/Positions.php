@@ -9,9 +9,14 @@ class Positions extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'keterangan',
-        'alias',
-    ];
+    protected $table = "positions";
+    protected $primaryKey = "id";
+    protected $fillable = ['jabatan'];
+
+    public function user ()
+    {
+        return $this->hasMany(User::class);
+    }
+    
+
 }

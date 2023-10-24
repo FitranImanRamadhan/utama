@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Positions;
 use App\Models\User; //Mengeksekusi database
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,14 +89,15 @@ class UserController extends Controller
     public function index()
     {
         $title = "Data user";
-        $users = User::orderBy('id', 'asc')->paginate(15);
+        $users = User::with('jabatan')->paginate(15);
         return view('users.index', compact(['users', 'title']));
     }
 
     public function create()
     {
         $title = "Tambah data user";
-        return view('users.create', compact(['title']));
+        $jbt = Positions::all();
+        return view('users.create', compact(['title','jbt']));
     }
 
 
@@ -103,6 +105,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'jabatan_id' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required',
             'position' => 'required',
@@ -116,8 +119,10 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        
         $title = "Edit Data position";
-        return view('users.edit', compact('user', 'title'));
+        $jbt = Positions::all();
+        return view('users.edit', compact('user', 'title','jbt'));
     }
 
 
@@ -126,6 +131,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'jabatan_id' => 'required',
             'email' => 'required|unique:users,email,' . $id,
             'position' => 'required',
             'departement' => 'required',
@@ -133,6 +139,7 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
+        $user->jabatan_id = $request->jabatan_id;
         $user->email = $request->email;
         $user->position = $request->position;
         $user->departement = $request->departement;

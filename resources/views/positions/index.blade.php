@@ -18,9 +18,7 @@
     <tbody class="table-succes ">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Namaa</th>
-            <th scope="col">Keterangan</th>
-            <th scope="col">Alias</th>
+            <th scope="col">Nama Jabatan</th>
             <th scope="col">Aksi</th>
         </tr>
         </thead>
@@ -29,9 +27,7 @@
         @foreach ($positions as $data)
         <tr>
             <td>{{ $no++ }}</td>
-            <td>{{ $data->name }}</td>
-            <td>{{ $data->keterangan }}</td>
-            <td>{{ $data->alias }}</td>
+            <td>{{ $data->jabatan }}</td>
             <td>
                 <form action="{{ route('positions.destroy',$data->id) }}" method="Post">
                     <a class="btn btn-warning" href="{{ route('positions.edit',$data->id) }}">Edit</a>

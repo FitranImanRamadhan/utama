@@ -14,6 +14,15 @@
                 @enderror
             </div>
         </div>
+        <div class="form-group">
+    <label for="jabatan_id">Jabatan:</label>
+    <select class="form-control" name="jabatan_id" id="jabatan_id" required>
+        <option disabled value>Pilih Jabatan</option>
+        @foreach ($jbt as $item)
+            <option value="{{ $item->id }}" {{ $item->id == $user->jabatan_id ? 'selected' : '' }}>{{ $item->jabatan }}</option>
+        @endforeach
+    </select>
+</div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>

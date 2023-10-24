@@ -18,6 +18,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nama</th>
+            <th scope="col">Jabatan</th>
             <th scope="col">Email</th>
             <th scope="col">Position</th>
             <th scope="col">Departement</th>
@@ -30,6 +31,7 @@
         <tr>
             <td>{{ $no++ }}</td>
             <td>{{$data->name}}</td>
+            <td>{{$data->jabatan->jabatan}}</td>
             <td>{{$data->email}}</td>
             <td>{{$data->position}}</td>
             <td>{{$data->departement}}</td>
