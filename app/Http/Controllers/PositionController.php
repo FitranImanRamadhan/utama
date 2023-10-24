@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportPositions;
 use App\Models\Positions;
 use Illuminate\Http\Request;
-use App\Exports\ExportPositions;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PositionController extends Controller
@@ -69,6 +69,8 @@ class PositionController extends Controller
      * @param  \App\Positions  $Positions
      * @return \Illuminate\Http\Response
      */
+
+     
     public function destroy(Positions $position)
     {
         $position->delete();

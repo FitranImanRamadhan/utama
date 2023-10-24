@@ -1,27 +1,31 @@
 @extends('tmp')
 @section('content')
 @if(session('success'))
-<div class="alert alert-success alert-dismissible fade show">
+<div class="alert alert-primary alert-dismissible fade show">
     {{ session('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
-<div class="text-end mb-2">
-    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('position.exportExcel') }}">Export Excel</a>
-</div>
-<div class="text-end mb-2">
-    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('positions.create') }}">Add Position</a>
-</div>
 <br>
-<table class="table table-success table-striped">
+<div class="d-flex justify-content-between mb-2">
+    
+    <div>
+        <a class="btn btn-success" href="{{ route('position.exportExcel') }}">Export Excel</a>
+        
+    </div>
+    <a class="btn btn-success" href="{{ route('positions.create') }}">Tambah Jabatan</a>
+</div>
+
+
+<br>
+<table id="example" class="table table-striped table-primary">
     <thead>
-    <tbody class="table-succes ">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nama Jabatan</th>
+            <th scope="col">No</th>
+            <th scope="col">Jabatan</th>
             <th scope="col">Aksi</th>
         </tr>
-        </thead>
+    </thead>
     <tbody>
         @php $no = 1 @endphp
         @foreach ($positions as $data)
