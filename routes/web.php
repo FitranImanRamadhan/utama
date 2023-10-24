@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RakController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\GolonganController;
 use App\Models\Departements;
 
 /*
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('departements', DepartementController::class);
     Route::resource('users', UserController::class);
     Route::resource('barangs', BarangController::class);
+    Route::resource('golongans', GolonganController::class);
     Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
     Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
     Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');

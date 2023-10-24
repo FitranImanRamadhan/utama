@@ -6,7 +6,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nama</th>
-            <th scope="col">Email</th>
+            <th scope="col">nip</th>
             <th scope="col">Position</th>
             <th scope="col">Departement</th>
             <th scope="col">Actions</th>
@@ -18,7 +18,7 @@
         <tr>
             <td>{{ $no++ }}</td>
             <td>{{$data->name}}</td>
-            <td>{{$data->email}}</td>
+            <td>{{$data->nip}}</td>
             <td>{{$data->position}}</td>
             <td>{{$data->departement}}</td>
         </tr>

@@ -19,8 +19,8 @@
                             <form action="{{ route('login.action') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
-                                    <label>email <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="email" name="email" value="{{ old('email') }}" />
+                                    <label>nip <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="nip" name="nip" value="{{ old('nip') }}" />
                                 </div>
                                 <div class="mb-3">
                                     <label>Password <span class="text-danger">*</span></label>

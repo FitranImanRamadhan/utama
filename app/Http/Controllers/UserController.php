@@ -21,14 +21,14 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users',
+            'nip' => 'required|unique:users',
             'password' => 'required',
             'password_confirm' => 'required|same:password',
         ]);
 
         $user = new User([
             'name' => $request->name,
-            'email' => $request->email,
+            'nip' => $request->nip,
             'password' => Hash::make($request->password),
         ]);
         $user->save();
@@ -46,16 +46,16 @@ class UserController extends Controller
     public function login_action(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'nip' => 'required',
             'password' => 'required',
         ]);
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['nip' => $request->nip, 'password' => $request->password])) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
 
         return back()->withErrors([
-            'password' => 'Wrong email or password',
+            'password' => 'Wrong nip or password',
         ]);
     }
 
@@ -106,7 +106,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'jabatan_id' => 'required',
-            'email' => 'required|unique:users',
+            'nip' => 'required|unique:users',
             'password' => 'required',
             'position' => 'required',
             'departement' => 'required',
@@ -132,7 +132,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'jabatan_id' => 'required',
-            'email' => 'required|unique:users,email,' . $id,
+            'nip' => 'required|unique:users,nip,' . $id,
             'position' => 'required',
             'departement' => 'required',
         ]);
@@ -140,7 +140,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->jabatan_id = $request->jabatan_id;
-        $user->email = $request->email;
+        $user->nip = $request->nip;
         $user->position = $request->position;
         $user->departement = $request->departement;
         $user->save();

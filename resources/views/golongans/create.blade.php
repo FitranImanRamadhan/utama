@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    <h2>Tambah Data Golongan</h2>
     <form action="{{ route('golongans.store') }}" method="POST">
         @csrf
         <div class="form-group">
@@ -27,10 +26,13 @@ document.getElementById('golongan').addEventListener('input', function() {
     // Logika pemetaan golongan ke pangkat
     if (golongan === '4C') {
         pangkatField.value = 'PNS SENIOR';
+    } else if (golongan === '4B') {
+        pangkatField.value = 'PNS JUNIOR';
     } else {
-        // Jika golongan bukan "4C", reset nilai pangkat
+        // Jika golongan bukan "4C" atau "4B", reset nilai pangkat
         pangkatField.value = '';
     }
 });
+
 </script>
 @endsection

@@ -21,7 +21,7 @@
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Email</th>
+            <th scope="col">nip</th>
             <th scope="col">Nama</th>
             <th scope="col">Jabatan</th>
             <th scope="col">Position</th>
@@ -34,7 +34,7 @@
         @foreach ($users as $data)
         <tr>
             <td>{{ $no++ }}</td>
-            <td>{{$data->email}}</td>
+            <td>{{$data->nip}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->jabatan->jabatan}}</td>
             <td>{{$data->position}}</td>
