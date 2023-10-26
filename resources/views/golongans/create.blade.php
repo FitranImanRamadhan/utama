@@ -1,4 +1,4 @@
-@extends('tmp')
+@extends('tmp1')
 
 @section('content')
 <div class="container">

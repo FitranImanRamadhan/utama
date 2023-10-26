@@ -181,7 +181,7 @@
             <li class="nav-item">
     <a class="nav-link nav-icon-hover" href="javascript:void(0)">
         @auth
-            <p>{{ Auth::user()->jabatan_id }}</p>
+            <p>{{ Auth::user()->name }}</p>
         @endauth
     </a>
 </li>

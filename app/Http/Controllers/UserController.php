@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Positions;
+use App\Models\Golongan;
 use App\Models\User; //Mengeksekusi database
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,7 +90,7 @@ class UserController extends Controller
     public function index()
     {
         $title = "Data user";
-        $users = User::with('jabatan')->paginate(15);
+        $users = User::with('jabatan','golongan')->paginate(15);
         return view('users.index', compact(['users', 'title']));
     }
 
@@ -97,7 +98,8 @@ class UserController extends Controller
     {
         $title = "Tambah data user";
         $jbt = Positions::all();
-        return view('users.create', compact(['title','jbt']));
+        $gln = Golongan::all();
+        return view('users.create', compact(['title','jbt','gln']));
     }
 
 
@@ -122,7 +124,8 @@ class UserController extends Controller
         
         $title = "Edit Data position";
         $jbt = Positions::all();
-        return view('users.edit', compact('user', 'title','jbt'));
+        $gln = Golongan::all();
+        return view('users.edit', compact('user', 'title','jbt','gln'));
     }
 
 
@@ -132,6 +135,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'jabatan_id' => 'required',
+            'golongan_id' => 'required',
             'nip' => 'required|unique:users,nip,' . $id,
             'position' => 'required',
             'departement' => 'required',
@@ -140,6 +144,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->jabatan_id = $request->jabatan_id;
+        $user->golongan_id = $request->golongan_id;
         $user->nip = $request->nip;
         $user->position = $request->position;
         $user->departement = $request->departement;

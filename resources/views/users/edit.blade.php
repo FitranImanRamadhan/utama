@@ -1,9 +1,10 @@
-@extends('tmp')
+@extends('tmp1')
 @section('content')
 
 <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
-    @method('PUT')
+    @method('PUT') <!-- Use the PUT method for updating the user -->
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -14,15 +15,39 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group">
-    <label for="jabatan_id">Jabatan:</label>
-    <select class="form-control" name="jabatan_id" id="jabatan_id" required>
-        <option disabled value>Pilih Jabatan</option>
-        @foreach ($jbt as $item)
-            <option value="{{ $item->id }}" {{ $item->id == $user->jabatan_id ? 'selected' : '' }}>{{ $item->jabatan }}</option>
-        @endforeach
-    </select>
-</div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Jabatan:</strong>
+                <div class="select2-container">
+                    <select class="form-control select2" name="jabatan_id" id="jabatan_id" required>
+                        <option value="" disabled selected>Klik untuk memilih jabatan</option>
+                        @foreach ($jbt as $item)
+                            <option value="{{ $item->id }}" {{ $user->jabatan_id == $item->id ? 'selected' : '' }}>
+                                {{ $item->jabatan }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Golongan:</strong>
+                <div class="select2-container">
+                    <select class="form-control select2" name="golongan_id" id="golongan_id" required>
+                        <option value="" disabled selected>Klik untuk memilih golongan</option>
+                        @foreach ($gln as $item)
+                            <option value="{{ $item->id }}" {{ $user->golongan_id == $item->id ? 'selected' : '' }}>
+                                {{ $item->golongan }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>nip:</strong>
@@ -32,15 +57,17 @@
                 @enderror
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Password:</strong>
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <strong>password:</strong>
+                <input type="password" name="password" value="{{ $user->password }}" class="form-control" placeholder="password">
                 @error('password')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Position:</strong>
@@ -50,15 +77,17 @@
                 @enderror
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Departement:</strong>
-                <input type="text" name="departement" class="form-control" placeholder="Departement">
+                <input type="text" name="departement" value="{{ $user->departement }}" class="form-control" placeholder="Departement">
                 @error('departement')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
+
         <button type="submit" class="btn btn-primary mt-2 ml-3">Update</button>
     </div>
 </form>

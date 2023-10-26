@@ -1,4 +1,4 @@
-@extends('tmp')
+@extends('tmp1')
 @section('content')
 @if(session('success'))
 <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -17,14 +17,16 @@
 
 
 <br>
-<table id="example" class="table table-striped table-primary">
+<table id="example" class="table table-bordered">
     <thead>
         <tr>
             <th scope="col">No</th>
             <th scope="col">nip</th>
             <th scope="col">Nama</th>
             <th scope="col">Jabatan</th>
-            <th scope="col">Position</th>
+            <th scope="col">Golongan</th>
+            <th scope="col">Pangkat</th>
+            <th scope="col">Level</th>
             <th scope="col">Departement</th>
             <th scope="col">Actions</th>
         </tr>
@@ -37,6 +39,8 @@
             <td>{{$data->nip}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->jabatan->jabatan}}</td>
+            <td>{{$data->golongan->golongan}}</td>
+            <td>{{$data->golongan->pangkat}}</td>
             <td>{{$data->position}}</td>
             <td>{{$data->departement}}</td>
             <td>

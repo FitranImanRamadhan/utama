@@ -1,37 +1,39 @@
-@extends('tmp')
+@extends('tmp1')
+
 @section('content')
-<form action="{{ route('golongans.update',$golongan->id) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>golongan Name:</strong>
-                <input type="text" name="name" value="{{ $golongan->golongan }}" class="form-control" placeholder="golongan golongan">
-                @error('golongan')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
+<div class="container">
+    <h2>Edit Data Golongan</h2>
+    <form action="{{ route('golongans.update', $golongan->id) }}" method="POST">
+        @csrf
+        @method('PUT') <!-- Menggunakan metode HTTP PUT untuk mengupdate data -->
+
+        <div class="form-group">
+            <label for="golongan">Golongan:</label>
+            <input type="text" name="golongan" id="golongan" class="form-control" value="{{ $golongan->golongan }}" placeholder="Masukkan Golongan">
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong> pangkat:</strong>
-                <input type="pangkat" name="pangkat" class="form-control" placeholder="golongan pangkat" value="{{ $golongan->pangkat }}">
-                @error('pangkat')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
+
+        <div class="form-group">
+            <label for="pangkat">Pangkat:</label>
+            <input type="text" name="pangkat" id="pangkat" class="form-control" value="{{ $golongan->pangkat }}" placeholder="Pangkat akan diisi otomatis" readonly>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong> alias:</strong>
-                <input type="text" name="alias" value="{{ $golongan->alias }}" class="form-control" placeholder="golongan alias">
-                @error('alias')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary ml-3">Submit</button>
-    </div>
-</form>
+
+        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('golongan').addEventListener('input', function() {
+    const golongan = this.value;
+    const pangkatField = document.getElementById('pangkat');
+
+    // Logika pemetaan golongan ke pangkat (sama seperti pada create.blade.php)
+    if (golongan === '4C') {
+        pangkatField.value = 'PNS SENIOR';
+    } else if (golongan === '4B') {
+        pangkatField.value = 'PNS JUNIOR';
+    } else {
+        pangkatField.value = '';
+    }
+});
+</script>
 @endsection

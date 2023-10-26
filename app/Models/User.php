@@ -21,7 +21,6 @@ class User extends Authenticatable
         'name',
         'jabatan_id',
         'golongan_id',
-        'pangkat',
         'nip',
         'password',
         'position',
@@ -33,6 +32,10 @@ class User extends Authenticatable
         return $this->belongsTo(Positions::class);
     }
 
+    public function golongan  ()
+    {
+        return $this->belongsTo(Golongan::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

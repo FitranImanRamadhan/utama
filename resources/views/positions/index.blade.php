@@ -1,4 +1,4 @@
-@extends('tmp')
+@extends('tmp1')
 @section('content')
 @if(session('success'))
 <div class="alert alert-primary alert-dismissible fade show">
@@ -18,7 +18,7 @@
 
 
 <br>
-<table id="example" class="table table-striped table-primary">
+<table id="example" class="table table-bordered">
     <thead>
         <tr>
             <th scope="col">No</th>

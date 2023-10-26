@@ -13,20 +13,36 @@
     <link rel="icon" href="{{asset('assets/images/logos/logo2.png')}}" type="image/png">
 
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+       body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-        .container-fluid {
-            background-image: url('admin/dist/img/1.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            height: 100%;
-            
-        }
+.container-fluid {
+    position: relative; /* Menetapkan posisi relatif untuk container */
+    background-image: url('assets/images/logos/bg1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+.container-fluid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* Mengatur warna latar belakang transparan */
+}
+
+/* Gaya tambahan sesuai kebutuhan Anda */
+
+
+
+
 
         /* Gaya tambahan sesuai kebutuhan Anda */
         /* .container-fluid {
@@ -40,11 +56,14 @@
 
 <body>
 
-<div class="container-fluid" style="background-image: url('admin/dist/img/1.jpg');">
+<body>
+
+<div class="container-fluid">
     <div class="card-body">
         @yield('content')
     </div>
 </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>

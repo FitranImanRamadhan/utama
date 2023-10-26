@@ -28,11 +28,12 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="text-center">
+                                    <a class="btn btn-danger" href="{{ route('welcome') }}">Kembali</a>
                                     <button class="btn btn-primary">Login</button>
                                     </div>
-                                    
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
