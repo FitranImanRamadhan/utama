@@ -5,8 +5,8 @@
         <div class="d-flex align-items-center justify-content-center w-100">
             <div class="row justify-content-center w-100">
                 <div class="col-md-8 col-lg-6 col-xxl-3">
-                    <div class="card mb-0">
-                        <div class="card-body">
+                    <div class="card mb-0 ">
+                        <div class="card-body ">
                             <h2 class="text-center">MOJIPP</h2>
                             @if(session('success'))
                             <p class="alert alert-success">{{ session('success') }}</p>

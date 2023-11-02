@@ -21,7 +21,7 @@
 
 .container-fluid {
     position: relative; /* Menetapkan posisi relatif untuk container */
-    background-image: url('assets/images/logos/bg1.jpg');
+    background-image: url('assets/images/logos/bg.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

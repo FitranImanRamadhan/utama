@@ -11,14 +11,14 @@
 
         <div class="form-group">
             <label for="pangkat">Pangkat:</label>
-            <input type="text" name="pangkat" id="pangkat" class="form-control" placeholder="Pangkat akan diisi otomatis" readonly>
+            <input type="text" name="pangkat" id="pangkat" class="form-control" placeholder="Pangkat akan diisi otomatis">
         </div>
 
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
 
-<script>
+<!-- <script>
 document.getElementById('golongan').addEventListener('input', function() {
     const golongan = this.value;
     const pangkatField = document.getElementById('pangkat');
@@ -34,5 +34,5 @@ document.getElementById('golongan').addEventListener('input', function() {
     }
 });
 
-</script>
+</script> -->
 @endsection

@@ -12,12 +12,14 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
+    
 
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
     ],
 
+    
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -42,6 +44,7 @@ return [
         ],
     ],
 
+    
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -95,6 +98,7 @@ return [
         ],
     ],
 
+    
     /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout

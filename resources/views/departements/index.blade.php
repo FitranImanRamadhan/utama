@@ -17,7 +17,7 @@
 
 
 <br>
-<table id="example" class="table table-striped table-primary">
+<table id="example" class="table table-bordered">
     <thead>
         <tr>
             <th scope="col">#</th>
