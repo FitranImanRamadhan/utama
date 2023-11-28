@@ -26,7 +26,7 @@ class GolonganController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'golongan' => 'required',
+            'golongan' => 'required|unique:golongans',
             'pangkat'=>'required'
         ]);
 
@@ -52,7 +52,7 @@ class GolonganController extends Controller
     public function update(Request $request, Golongan $golongan)
     {
         $request->validate([
-            'golongan' => 'required',
+            'golongan' => 'required|unique:golongans',
             'pangkat' => 'required',
         ]);
 

@@ -27,6 +27,12 @@ class User extends Authenticatable
         'departement'
     ];
 
+    public function gaji ()
+    {
+        return $this->hasMany(Gaji::class);
+    }
+
+    
     public function jabatan  ()
     {
         return $this->belongsTo(Positions::class);

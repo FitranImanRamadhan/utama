@@ -21,7 +21,7 @@
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">nip</th>
+            <th scope="col">NIP</th>
             <th scope="col">Nama</th>
             <th scope="col">Jabatan</th>
             <th scope="col">Golongan</th>

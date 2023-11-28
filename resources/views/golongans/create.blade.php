@@ -17,7 +17,6 @@
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
-
 <!-- <script>
 document.getElementById('golongan').addEventListener('input', function() {
     const golongan = this.value;

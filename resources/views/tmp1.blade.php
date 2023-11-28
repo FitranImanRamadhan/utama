@@ -63,7 +63,7 @@
                 <div class="navbar-nav w-100">
                     <a href="{{ route('home') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     
-                    <div class="nav-item dropdown">
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Master Data</a>
                         @if(Auth()->user()->position == "1")
                         <div class="dropdown-menu bg-transparent border-0">
@@ -72,10 +72,11 @@
                             <a href="element.html" class="dropdown-item">Potongan</a>
                         </div>
                         @endif
-                    </div>
-                    <a href="{{ route('departements.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Departement</a>
+                    </div> -->
+                    <a href="{{ route('users.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>User</a>
                     <a href="{{ route('golongans.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Golongan</a>
-                    <a href="{{ route('positions.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Jabatan</a>
+                    <a href="{{ route('gajis.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Gaji</a>
+                    <a href="{{ route('positions.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Potongan</a>
                 </div>
             </nav>
         </div>
@@ -137,7 +138,6 @@
 <!-- Additional Scripts -->
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>

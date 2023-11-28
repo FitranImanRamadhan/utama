@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Positions;
 use App\Models\Golongan;
-use App\Models\User; //Mengeksekusi database
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -94,13 +94,41 @@ class UserController extends Controller
         return view('users.index', compact(['users', 'title']));
     }
 
-    public function create()
-    {
-        $title = "Tambah data user";
-        $jbt = Positions::all();
-        $gln = Golongan::all();
-        return view('users.create', compact(['title','jbt','gln']));
+    public function create(Request $request)
+{
+    $title = "Create User / Register";
+    $jbt = Positions::all();
+    $gln = Golongan::all();
+
+    if ($request->isMethod('post')) {
+        $request->validate([
+            'name' => 'required',
+            'jabatan_id' => 'required',
+            'golongan_id' => 'required',
+            'nip' => 'required|unique:users',
+            'password' => 'required',
+            'position' => 'required',
+            'departement' => 'required',
+        ]);
+
+        // Create a new user based on the registration data
+        $user = User::create([
+            'name' => $request->input('name'),
+            'jabatan_id' => $request->input('jabatan_id'),
+            'golongan_id' => $request->input('golongan_id'),
+            'nip' => $request->input('nip'),
+            'password' => Hash::make($request->input('password')),
+            'position' => $request->input('position'),
+            'departement' => $request->input('departement'),
+        ]);
+
+        // You can also log in the user automatically here if needed
+
+        return redirect()->route('users.index')->with('success', 'User has been created and registered successfully.');
     }
+
+    return view('users.create', compact(['title', 'jbt', 'gln']));
+}
 
 
     public function store(Request $request)
@@ -108,6 +136,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'jabatan_id' => 'required',
+            'golongan_id' => 'required',
             'nip' => 'required|unique:users',
             'password' => 'required',
             'position' => 'required',
