@@ -34,7 +34,7 @@ class UserController extends Controller
         ]);
         $user->save();
 
-        return redirect()->route('login')->with('success', 'Registration success. Please login!');
+        return redirect()->route('users.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
 
@@ -78,6 +78,18 @@ class UserController extends Controller
         $request->session()->regenerate();
         return back()->with('success', 'Password changed!');
     }
+    
+    public function profile()
+{
+    $user = Auth::user(); // Get the authenticated user
+
+    if ($user) {
+        $title = "User Profile";
+        return view('user.profile', compact('user', 'title'));
+    } else {
+        return redirect()->route('login')->with('error', 'You must be logged in to view your profile.');
+    }
+}
 
     public function logout(Request $request)
     {
@@ -103,23 +115,19 @@ class UserController extends Controller
     if ($request->isMethod('post')) {
         $request->validate([
             'name' => 'required',
-            'jabatan_id' => 'required',
             'golongan_id' => 'required',
             'nip' => 'required|unique:users',
             'password' => 'required',
             'position' => 'required',
-            'departement' => 'required',
         ]);
 
         // Create a new user based on the registration data
         $user = User::create([
             'name' => $request->input('name'),
-            'jabatan_id' => $request->input('jabatan_id'),
             'golongan_id' => $request->input('golongan_id'),
             'nip' => $request->input('nip'),
             'password' => Hash::make($request->input('password')),
             'position' => $request->input('position'),
-            'departement' => $request->input('departement'),
         ]);
 
         // You can also log in the user automatically here if needed
@@ -135,12 +143,10 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'jabatan_id' => 'required',
             'golongan_id' => 'required',
             'nip' => 'required|unique:users',
             'password' => 'required',
             'position' => 'required',
-            'departement' => 'required',
         ]);
 
         User::create($request->post());
@@ -163,20 +169,16 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'jabatan_id' => 'required',
             'golongan_id' => 'required',
             'nip' => 'required|unique:users,nip,' . $id,
             'position' => 'required',
-            'departement' => 'required',
         ]);
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
-        $user->jabatan_id = $request->jabatan_id;
         $user->golongan_id = $request->golongan_id;
         $user->nip = $request->nip;
         $user->position = $request->position;
-        $user->departement = $request->departement;
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
@@ -189,6 +191,8 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
+
+    
 
     public function exportPdf()
     {

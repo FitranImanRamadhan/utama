@@ -23,7 +23,7 @@ use App\Models\Departements;
 */
 Route::get('/', function () {
     return view('welcome', ['title' => 'Welcome']);
-})->name('welcome')->middleware('guest'); // Tambahkan middleware 'guest'
+})->name('welcome')->middleware('guest');
 
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
@@ -37,7 +37,6 @@ Route::middleware('auth')->group(function () {
     })->name('home');
     Route::get('password', [UserController::class, 'password'])->name('password');
     Route::post('password', [UserController::class, 'password_action'])->name('password.action');
-    
     // Route Position
     Route::resource('positions', PositionController::class);
     Route::resource('departements', DepartementController::class);
@@ -50,11 +49,13 @@ Route::middleware('auth')->group(function () {
     Route::get('gaji/export-pdf', [GajiController::class, 'exportPdf'])->name('gajis.exportPdf');
     Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
     Route::get('departement/export-excel', [DepartementController::class, 'exportExcel'])->name('departement.exportExcel');
-    Route::resource('raks', RAKController::class);
+    Route::resource('raks', RakController::class);
     Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
-    Route::resource('barangs', BarangController::class);
-    Route::get('chart-line', [RAKController::class, 'chartLine'])->name('raks.chartLine');
-    Route::get('chart-line-ajax', [RAKController::class, 'chartLineAjax'])->name('raks.chartLineAjax');
+    Route::get('chart-line', [RakController::class, 'chartLine'])->name('raks.chartLine');
+    Route::get('chart-line-ajax', [RakController::class, 'chartLineAjax'])->name('raks.chartLineAjax');
+    
+    // New profile route
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
 });
 
 

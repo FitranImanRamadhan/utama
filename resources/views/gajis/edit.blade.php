@@ -8,15 +8,15 @@
             <div class="form-group">
                 <strong>NIP:</strong>
                 <div class="select2-container">
-                    <select class="form-select select2" name="nip_id" id="nip_id" required>
+                    <select class="form-select select2" name="user_id" id="user_id" required>
                         <option value="disable" disabled selected>Klik untuk memilih jabatan</option>
                         @foreach ($np as $item)
-                            <option value="{{ $item->id }}"{{ $gaji->nip_id == $item->id ? 'selected' : '' }}>
+                            <option value="{{ $item->id }}"{{ $gaji->user_id == $item->id ? 'selected' : '' }}>
                                         {{ $item->nip }}</option>
                         @endforeach
                     </select>
                 </div>
-                @error('nip_id')
+                @error('user_id')
                 <div class="alert alert-danger mt-1">{{ $message }}</div>
             @enderror
             </div>
@@ -43,4 +43,16 @@
         <button type="submit" class="btn btn-primary mt-2 ml-3">Update</button>
     </div>
 </form>
+<script>
+    // Fungsi untuk menampilkan NIP pada dropdown saat tombol edit diklik
+    function tampilkanNIP(nipTerpilih) {
+        document.getElementById('user_id').value = nipTerpilih;
+    }
+
+    // Panggil fungsi saat tombol edit diklik
+    document.getElementById('tombolEdit').addEventListener('click', function() {
+        var nipTerpilih = "nilai_yang_ingin_ditampilkan"; // Ganti dengan nilai NIP yang ingin ditampilkan
+        tampilkanNIP(nipTerpilih);
+    });
+</script>
 @endsection
