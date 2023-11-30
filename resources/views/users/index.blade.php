@@ -26,8 +26,8 @@
             <th scope="col">Jabatan</th>
             <th scope="col">Golongan</th>
             <th scope="col">Pangkat</th>
-            <th scope="col">Level</th>
-            <th scope="col">Departement</th>
+            <th scope="col">Level</th> 
+            <th scope="col">Gaji</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -42,7 +42,7 @@
             <td>{{$data->golongan->golongan}}</td>
             <td>{{$data->golongan->pangkat}}</td>
             <td>{{$data->position}}</td>
-            <td>{{$data->departement}}</td>
+            <td>{{ $data->gaji->gapok }}</td>
             <td>
                 <form action="{{ route('users.destroy', $data->id) }}" method="POST">
                     <a class="btn btn-warning" href="{{ route('users.edit', $data->id) }}">Edit</a>

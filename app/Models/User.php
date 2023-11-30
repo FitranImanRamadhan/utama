@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function gaji ()
     {
-        return $this->hasMany(Gaji::class);
+        return $this->hasOne(Gaji::class);
     }
 
     

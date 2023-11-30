@@ -8,7 +8,7 @@
             <div class="form-group">
                 <strong>NIP:</strong>
                 <div class="select2-container">
-                    <select class="form-select select2" name="nip_id" id="nip_id" required>
+                    <select class="form-select select2" name="user_id" id="user_id" required>
                         <option value="" disabled selected>Klik untuk memilih jabatan</option>
                         @foreach ($np as $item)
                             <option value="{{ $item->id }}">{{ $item->nip }}</option>

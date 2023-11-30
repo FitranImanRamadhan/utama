@@ -11,9 +11,9 @@ class Gaji extends Model
 
     protected $table = "gajis";
     protected $primaryKey = "id";
-    protected $fillable = ['nip_id','gapok','tnj_istri'];
+    protected $fillable = ['user_id','gapok','tnj_istri'];
     
-    public function nip  ()
+    public function user  ()
     {
         return $this->belongsTo(User::class);
     }

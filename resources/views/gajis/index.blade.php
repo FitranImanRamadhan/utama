@@ -28,7 +28,7 @@
         @foreach ($gajis as $data)
         <tr>
             <td>{{ $no++ }}</td>
-            <td>{{$data->nip->nip}}</td>
+            <td>{{$data->user->nip}}</td>
             <td>{{ $data->gapok }}</td>
             <td>{{ $data->tnj_istri }}</td>
             <td>
