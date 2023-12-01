@@ -18,6 +18,17 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('gapok');
             $table->string('tnj_istri');
+            $table->string('tnj_anak');
+            $table->string('tnj_umum');
+            $table->string('tnj_beras');
+            $table->string('pph');
+            $table->string('tnj_struktural');
+            $table->string('tnj_fungsional');
+            $table->string('tnj_terpencil');
+            $table->string('pembulatan');
+            $table->string('tnj_kinerja');
+            $table->string('tnj_makan');
+            $table->string('total_gaji');
             $table->timestamps();
         });
     }

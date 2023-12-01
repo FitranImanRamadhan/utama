@@ -29,7 +29,18 @@ class GajiController extends Controller
         $request->validate([
             'user_id' => 'required|unique:gajis,user_id',
             'gapok' => 'required',
-            'tnj_istri' => 'required'
+            'tnj_istri' => 'required',
+            'tnj_anak' => 'required',
+            'tnj_umum' => 'required',
+            'tnj_beras' => 'required',
+            'pph' => 'required',
+            'tnj_struktural' => 'required',
+            'tnj_fungsional' => 'required',
+            'tnj_terpencil' => 'required',
+            'pembulatan' => 'required',
+            'tnj_kinerja' => 'required',
+            'tnj_makan' => 'required',
+            'total_gaji' => 'required',
         ]);
 
         Gaji::create($request->post());
@@ -55,6 +66,17 @@ class GajiController extends Controller
         'user_id' => 'required|unique:gajis,user_id,' . $gaji->id,
         'gapok' => 'required',
         'tnj_istri' => 'required',
+        'tnj_anak' => 'required',
+        'tnj_umum' => 'required',
+        'tnj_beras' => 'required',
+        'pph' => 'required',
+        'tnj_struktural' => 'required',
+        'tnj_fungsional' => 'required',
+        'tnj_terpencil' => 'required',
+        'pembulatan' => 'required',
+        'tnj_kinerja' => 'required',
+        'tnj_makan' => 'required',
+        'total_gaji' => 'required',
     ], [
         'user_id.unique' => 'NIP sudah ada, pilih NIP yang lain.'
     ]);

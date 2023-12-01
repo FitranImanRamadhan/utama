@@ -22,8 +22,48 @@
           @Auth<td>: RP. {{ Auth::user()->gaji->tnj_istri }}</td>@endauth
         </tr>
         <tr>
-          <td>Pekerjaan</td>
-          @Auth<td>: RP. {{ Auth::user()->gaji->gapok }}</td>@endauth
+          <td>Tunjangan Anak</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->tnj_anak }}</td>@endauth
+        </tr>
+        <tr>
+          <td>Tunjangan Umum</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->tnj_umum }}</td>@endauth
+        </tr>
+        <tr>
+          <td>Tunjangan Beras</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->tnj_beras }}</td>@endauth
+        </tr>
+        <tr>
+          <td>PPH</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->pph }}</td>@endauth
+        </tr>
+        <tr>
+          <td>Tunjangan Struktural</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->tnj_struktural }}</td>@endauth
+        </tr>
+        <tr>
+          <td>Tunjangan Funsional</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->tnj_fungsional }}</td>@endauth
+        </tr>
+        <tr>
+          <td>Daerah Terpencil</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->tnj_terpencil }}</td>@endauth
+        </tr>
+        <tr>
+          <td>Pembulatan</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->pembulatan }}</td>@endauth
+        </tr>
+        <tr>
+          <td>Tunjangan Kinerja</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->tnj_kinerja }}</td>@endauth
+        </tr>
+        <tr>
+          <td>Tunjangan Makan</td>
+          @Auth<td>: RP. {{ Auth::user()->gaji->tnj_makan }}</td>@endauth
+        </tr>
+        <tr>
+          <td class="text-primary"><strong>Bruto</strong></td>
+          @Auth<td class="text-primary"><strong>: RP. {{ Auth::user()->gaji->total_gaji }}</strong></td>@endauth
         </tr>
       </table>
     </div>

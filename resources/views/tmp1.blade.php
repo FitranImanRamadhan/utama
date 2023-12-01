@@ -73,10 +73,12 @@
                         </div>
                         @endif
                     </div> -->
+                    @if(Auth()->user()->position == "1")
                     <a href="{{ route('users.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>User</a>
-                    <a href="{{ route('golongans.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Golongan</a>
                     <a href="{{ route('gajis.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Gaji</a>
                     <a href="{{ route('positions.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Potongan</a>
+                    @endif
+                    <a href="{{ route('golongans.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Golongan</a>
                 </div>
             </nav>
         </div>

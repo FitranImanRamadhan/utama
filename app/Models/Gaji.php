@@ -11,7 +11,20 @@ class Gaji extends Model
 
     protected $table = "gajis";
     protected $primaryKey = "id";
-    protected $fillable = ['user_id','gapok','tnj_istri'];
+    protected $fillable = [ 'user_id',
+                            'gapok',
+                            'tnj_istri',
+                            'tnj_anak',
+                            'tnj_umum',
+                            'tnj_beras',
+                            'pph',
+                            'tnj_struktural',
+                            'tnj_fungsional',
+                            'tnj_terpencil',
+                            'pembulatan',
+                            'tnj_kinerja',
+                            'tnj_makan',
+                            'total_gaji'];
     
     public function user  ()
     {
