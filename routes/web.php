@@ -9,7 +9,9 @@ use App\Http\Controllers\RakController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GajiController;
+use App\Http\Controllers\PotonganController;
 use App\Models\Departements;
+use App\Models\Potongan;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('barangs', BarangController::class);
     Route::resource('golongans', GolonganController::class);
     Route::resource('gajis', GajiController::class);
+    Route::resource('potongans', PotonganController::class);
     Route::get('departement/export-pdf', [DepartementsController::class, 'exportPdf'])->name('departements.exportPdf');
     Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
     Route::get('gaji/export-pdf', [GajiController::class, 'exportPdf'])->name('gajis.exportPdf');
@@ -53,6 +56,15 @@ Route::middleware('auth')->group(function () {
     Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
     Route::get('chart-line', [RakController::class, 'chartLine'])->name('raks.chartLine');
     Route::get('chart-line-ajax', [RakController::class, 'chartLineAjax'])->name('raks.chartLineAjax');
+
+    //gaji
+    Route::middleware('auth')->get('gaji/{bulan}', [GajiController::class, 'gajiBerdasarkanBulan'])->name('gaji.bulan');
+    Route::get('laporan_gaji', [GajiController::class, 'tampilkanLaporan'])->name('laporan-gaji');
+
+    //potongan
+    Route::middleware('auth')->get('potongan/{bulan}', [PotonganController::class, 'potonganBerdasarkanBulan'])->name('potongan.bulan');
+    Route::get('laporan_potongan', [PotonganController::class, 'tampilkanLaporan'])->name('laporan-potongan');
+    
     
     // New profile route
     Route::get('profile', [UserController::class, 'profile'])->name('profile');

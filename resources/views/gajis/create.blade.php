@@ -9,12 +9,21 @@
                 <strong>NIP:</strong>
                 <div class="select2-container">
                     <select class="form-select select2" name="user_id" id="user_id" required>
-                        <option value="" disabled selected>Klik untuk memilih jabatan</option>
+                        <option value="" disabled selected>Klik untuk memilih NiP</option>
                         @foreach ($np as $item)
                             <option value="{{ $item->id }}">{{ $item->nip }}</option>
                         @endforeach
                     </select>
                 </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Bulan:</strong>
+                <input type="month" name="bulan" class="form-control" placeholder="bulan">
+                @error('bulan')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

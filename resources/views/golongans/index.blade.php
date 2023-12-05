@@ -1,7 +1,7 @@
 @extends('tmp1')
 @section('content')
 @if(session('success'))
-<div class="alert alert-primary alert-dismissible fade show">
+<div class="alert alert-success alert-dismissible fade show">
     {{ session('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>

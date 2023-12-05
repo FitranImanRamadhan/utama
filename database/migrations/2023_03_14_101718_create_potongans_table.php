@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gajis', function (Blueprint $table) {
+        Schema::create('potongans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('bulan');
-            $table->string('gapok');
+            $table->string('zakat');
             $table->string('tnj_istri');
             $table->string('tnj_anak');
             $table->string('tnj_umum');
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gajis');
+        Schema::dropIfExists('potongans');
     }
 };

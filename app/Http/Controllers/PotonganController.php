@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ExportGaji; // Perhatikan penamaan kelas
-use App\Models\Gaji;
+use App\Exports\Exportpotongan; // Perhatikan penamaan kelas
+use App\Models\Potongan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Carbon;
 
-class GajiController extends Controller
+class PotonganController extends Controller
 {
     public function index()
     {
-        $title = "Data gajis";
-        $gajis = Gaji::with('user')->paginate(15);
-        return view('gajis.index', compact('gajis', 'title')); // Mengubah compact agar sesuai
+        $title = "Data potongans";
+        $potongans = Potongan::with('user')->paginate(15);
+        return view('potongans.index', compact('potongans', 'title')); // Mengubah compact agar sesuai
     }
 
     public function create()
     {
-        $title = "Tambah data Gaji";
+        $title = "Tambah data potongan";
         $np = User::all();
-        return view('gajis.create', compact('title','np')); // Mengubah compact agar sesuai
+        return view('potongans.create', compact('title','np')); // Mengubah compact agar sesuai
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class GajiController extends Controller
         $request->validate([
             'user_id' => 'required',
             'bulan' => 'required',
-            'gapok' => 'required',
+            'zakat' => 'required',
             'tnj_istri' => 'required',
             'tnj_anak' => 'required',
             'tnj_umum' => 'required',
@@ -45,38 +45,38 @@ class GajiController extends Controller
             'total_gaji' => 'required',
         ]);
 
-        Gaji::create($request->post());
+        Potongan::create($request->post());
 
-        return redirect()->route('gajis.index')->with('success', 'Gaji has been created successfully.'); // Mengubah pesan success agar sesuai
+        return redirect()->route('potongans.index')->with('success', 'Gaji has been created successfully.'); // Mengubah pesan success agar sesuai
     }
 
-    public function show(Gaji $gaji)    
+    public function show(Potongan $potongan)    
     {
-        return view('gajis.show', compact('gaji')); // Mengubah compact agar sesuai
+        return view('potongans.show', compact('potongan')); // Mengubah compact agar sesuai
     }
 
     public function tampilkanLaporan()
     {
         $title = "Laporan";
-        $gajis = Gaji::with('user')->paginate(15);
+        $potongans = Potongan::with('user')->paginate(15);
     
-        return view('gajis.laporan_gaji', ['title' => $title, 'gajis' => $gajis]);
+        return view('potongans.laporan_gaji', ['title' => $title, 'potongans' => $potongans]);
     }
     
     
-    public function edit(Gaji $gaji)
+    public function edit(Potongan $potongan)
     {
         $title = "Edit Data Gaji";
         $np = User::all();
-        return view('gajis.edit', compact('gaji', 'title','np'));
+        return view('potongans.edit', compact('potongan', 'title','np'));
     }
 
-    public function update(Request $request, Gaji $gaji)
+    public function update(Request $request, Potongan $potongan)
 {
     $request->validate([
         'user_id' => 'required',
         'bulan' => 'required',
-        'gapok' => 'required',
+        'zakat' => 'required',
         'tnj_istri' => 'required',
         'tnj_anak' => 'required',
         'tnj_umum' => 'required',
@@ -93,38 +93,39 @@ class GajiController extends Controller
         'user_id.unique' => 'NIP sudah ada, pilih NIP yang lain.'
     ]);
 
-    $gaji->fill($request->post())->save();
+    $potongan->fill($request->post())->save();
 
-    return redirect()->route('gajis.index')->with('success', 'Gaji has been updated successfully');
+    return redirect()->route('potongans.index')->with('success', 'Gaji has been updated successfully');
 }
 
 
-public function gajiBerdasarkanBulan(Request $request)
+public function potonganBerdasarkanBulan(Request $request)
 {
+    // Ambil input bulan dari request
     $bulan = $request->input('bulan');
 
     // Ubah format bulan ke dalam format yang dikenali oleh Carbon (YYYY-MM)
     $bulanFormatted = Carbon::createFromFormat('Y-m', $bulan)->format('Y-m');
 
-    // Ambil data gaji berdasarkan bulan
-    $gajisByMonth = Gaji::where('bulan', $bulanFormatted)
+    // Ambil data potongan berdasarkan bulan
+    $potonganByMonth = Potongan::where('bulan', $bulanFormatted)
         ->where('user_id', auth()->user()->id) // Filter berdasarkan user yang sedang login
         ->with('user')
         ->paginate(15);
 
     // Tampilkan ke view yang sesuai
-    return view('gajis.laporan_gaji', ['gajis' => $gajisByMonth, 'title' => 'Gaji Berdasarkan Bulan']);
+    return view('potongans.laporan_potongan', ['potongans' => $potonganByMonth, 'title' => 'Potongan Berdasarkan Bulan']);
 }
 
 
-    public function destroy(Gaji $gaji)
+    public function destroy(Potongan $potongan)
     {
-        $gaji->delete();
-        return redirect()->route('gajis.index')->with('success', 'Gaji has been deleted successfully'); // Mengubah pesan success agar sesuai
+        $potongan->delete();
+        return redirect()->route('potongans.index')->with('success', 'potongan has been deleted successfully'); // Mengubah pesan success agar sesuai
     }
 
     public function exportExcel()
     {
-        return Excel::download(new ExportGaji, 'gajis.xlsx');
+        return Excel::download(new Exportpotongan, 'potongans.xlsx');
     }
 }

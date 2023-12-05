@@ -10,7 +10,7 @@
     <br>
 
     <div class="d-flex justify-content-between mb-2">
-        <a class="btn btn-success" href="{{ route('gajis.create') }}">Tambah Golongan</a>
+        <a class="btn btn-success" href="{{ route('potongans.create') }}">Tambah Golongan</a>
 
     </div>
 
@@ -23,7 +23,7 @@
                     <th class="text-center" scope="col">No</th>
                     <th class="text-center" scope="col">NIP</th>
                     <th class="text-center" scope="col">Bulan</th>
-                    <th class="text-center" scope="col">Gaji Pokok</th>
+                    <th class="text-center" scope="col">Zakat</th>
                     <th class="text-center" scope="col">Tunjangan Istri</th>
                     <th class="text-center" scope="col">Tunjangan Anak</th>
                     <th class="text-center" scope="col">Tunjangan Umum</th>
@@ -41,12 +41,12 @@
             </thead>
             <tbody>
                 @php $no = 1 @endphp
-                @foreach ($gajis as $data)
+                @foreach ($potongans as $data)
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $data->user->nip }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->bulan)->format('F Y') }}</td>
-                        <td>{{ $data->gapok }}</td>
+                        <td>{{ $data->zakat }}</td>
                         <td>{{ $data->tnj_istri }}</td>
                         <td>{{ $data->tnj_anak }}</td>
                         <td>{{ $data->tnj_umum }}</td>
@@ -60,7 +60,7 @@
                         <td>{{ $data->tnj_makan }}</td>
                         <td>
                             <?php
-                                $total_gaji = $data->gapok +
+                                $total_gaji = $data->zakat +
                                     $data->tnj_istri +
                                     $data->tnj_anak +
                                     $data->tnj_umum +
@@ -76,8 +76,8 @@
                             {{ $total_gaji }}
                         </td>
                         <td>
-                            <form action="{{ route('gajis.destroy', $data->id) }}" method="Post" class="d-flex justify-content-start">
-                                <a class="btn btn-warning me-2" href="{{ route('gajis.edit', $data->id) }}">Edit</a>
+                            <form action="{{ route('potongans.destroy', $data->id) }}" method="Post" class="d-flex justify-content-start">
+                                <a class="btn btn-warning me-2" href="{{ route('potongans.edit', $data->id) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

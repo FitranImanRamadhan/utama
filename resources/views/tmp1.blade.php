@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>Informasi Gaji</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -51,7 +51,7 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <!-- <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;"> -->
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
@@ -76,7 +76,9 @@
                     @if(Auth()->user()->position == "1")
                     <a href="{{ route('users.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>User</a>
                     <a href="{{ route('gajis.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Gaji</a>
-                    <a href="{{ route('positions.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Potongan</a>
+                    <a href="{{ route('potongans.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Potongan</a>
+                    <a href="{{ route('laporan-gaji') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Laporan Gaji</a>
+                    <a href="{{ route('laporan-potongan') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Laporan Pot</a>
                     @endif
                     <a href="{{ route('golongans.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Golongan</a>
                 </div>
@@ -98,7 +100,7 @@
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <!-- <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;"> -->
                             @auth
                             <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
                         @endauth

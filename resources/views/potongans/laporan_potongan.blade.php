@@ -1,29 +1,55 @@
 @extends('tmp1')
 @section('content')
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show">
+        <div class="alert alert-primary alert-dismissible fade show">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     <br>
+    <form onsubmit="event.preventDefault(); tampilkanTabel(event);" method="GET" action="{{ route('potongan.bulan', ['bulan' => 'nilai_bulan', 'tahun' => 'nilai_tahun']) }}">
+        @csrf
+        <div class="row">
+            <div class="col-md-3">
+                <label for="bulan" class="form-label">Bulan:</label>
+                <select class="form-select" id="bulan" name="bulan">
+                    <option value="">Pilih Bulan</option>
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <!-- Tambahkan pilihan bulan lainnya -->
+                    <!-- ... -->
+                    <option value="12">Desember</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="tahun" class="form-label">Tahun:</label>
+                <select class="form-select" id="tahun" name="tahun">
+                    <option value="">Pilih Tahun</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <!-- Tambahkan pilihan tahun lainnya jika diperlukan -->
+                    <!-- ... -->
+                </select>
+            </div>
+            <div class="col-md-2 align-self-end">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
 
-    <div class="d-flex justify-content-between mb-2">
-        <a class="btn btn-success" href="{{ route('gajis.create') }}">Tambah Golongan</a>
-
-    </div>
 
     <br>
 
-    <div class="table-responsive">
-        <table id="example" class="table table-bordered">
+    <div class="table-responsive" id="tabel-gaji" style="display: none;">
+    <!-- Tabel yang akan disembunyikan -->
+    <table id="example" class="table table-bordered">
             <thead>
                 <tr>
                     <th class="text-center" scope="col">No</th>
                     <th class="text-center" scope="col">NIP</th>
                     <th class="text-center" scope="col">Bulan</th>
-                    <th class="text-center" scope="col">Gaji Pokok</th>
+                    <th class="text-center" scope="col">Zakat</th>
                     <th class="text-center" scope="col">Tunjangan Istri</th>
                     <th class="text-center" scope="col">Tunjangan Anak</th>
                     <th class="text-center" scope="col">Tunjangan Umum</th>
@@ -36,7 +62,6 @@
                     <th class="text-center" scope="col">Tunjangan Kinerja</th>
                     <th class="text-center" scope="col">Tunjangan Makan</th>
                     <th class="text-center" scope="col">Total</th>
-                    <th class="text-center" scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +71,7 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $data->user->nip }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->bulan)->format('F Y') }}</td>
-                        <td>{{ $data->gapok }}</td>
+                        <td>{{ $data->zakat }}</td>
                         <td>{{ $data->tnj_istri }}</td>
                         <td>{{ $data->tnj_anak }}</td>
                         <td>{{ $data->tnj_umum }}</td>
@@ -60,7 +85,7 @@
                         <td>{{ $data->tnj_makan }}</td>
                         <td>
                             <?php
-                                $total_gaji = $data->gapok +
+                                $total_gaji = $data->zakat +
                                     $data->tnj_istri +
                                     $data->tnj_anak +
                                     $data->tnj_umum +
@@ -74,14 +99,6 @@
                                     $data->tnj_makan;
                             ?>
                             {{ $total_gaji }}
-                        </td>
-                        <td>
-                            <form action="{{ route('gajis.destroy', $data->id) }}" method="Post" class="d-flex justify-content-start">
-                                <a class="btn btn-warning me-2" href="{{ route('gajis.edit', $data->id) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -100,4 +117,10 @@
             });
         });
     </script>
+    <script>
+    function tampilkanTabel(event) {
+        event.preventDefault(); // Mencegah perilaku default dari form submit
+        document.getElementById('tabel-potongan').style.display = 'block';
+    }
+</script>
 @endsection
