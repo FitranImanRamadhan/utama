@@ -1,4 +1,4 @@
-@extends('tmp1')
+@extends('tmp')
 @section('content')
 
 <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
@@ -14,22 +14,35 @@
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="form-group">
-        <strong>Golongan:</strong>
-        <div class="select2-container">
-            <select class="form-select select2" name="golongan_id" id="golongan_id" required>
-                <option value="" disabled selected>Klik untuk memilih golongan</option>
-                @foreach ($gln as $item)
-                    <option value="{{ $item->id }}"{{ $user->golongan_id == $item->id ? 'selected' : '' }}>
-                                {{ $item->golongan }}</option>
-                @endforeach
-            </select>
-        </div>
     </div>
-</div>
-
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Golongan:</strong>
+                <div class="select2-container">
+                    <select class="form-select select2" name="golongan_id" id="golongan_id" required>
+                        <option value="" disabled selected>Klik untuk memilih golongan</option>
+                        @foreach ($gln as $item)
+                            <option value="{{ $item->id }}"{{ $user->golongan_id == $item->id ? 'selected' : '' }}>
+                                        {{ $item->golongan }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Jabatan:</strong>
+                <div class="select2-container">
+                    <select class="form-select select2" name="jabatan_id" id="jabatan_id" required>
+                        <option value="" disabled selected>Klik untuk memilih golongan</option>
+                        @foreach ($jbt as $item)
+                            <option value="{{ $item->id }}"{{ $user->jabatan_id == $item->id ? 'selected' : '' }}>
+                                        {{ $item->jabatan }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>nip:</strong>

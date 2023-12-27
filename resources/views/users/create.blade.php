@@ -1,4 +1,4 @@
-@extends('tmp1')
+@extends('tmp')
 @section('content')
 
 @if($errors->any())
@@ -32,6 +32,19 @@
                                             <option value="" disabled selected>Klik untuk memilih golongan</option>
                                             @foreach ($gln as $item)
                                                 <option value="{{ $item->id }}">{{ $item->golongan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Jabatan:</strong>
+                                    <div class="select2-container">
+                                        <select class="form-select select2" name="jabatan_id" id="jabatan_id" required>
+                                            <option value="" disabled selected>Klik untuk memilih jabatan</option>
+                                            @foreach ($jbt as $item)
+                                                <option value="{{ $item->id }}">{{ $item->jabatan }}</option>
                                             @endforeach
                                         </select>
                                     </div>

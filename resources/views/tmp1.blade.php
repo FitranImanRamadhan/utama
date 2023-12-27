@@ -78,7 +78,6 @@
                     <a href="{{ route('gajis.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Gaji</a>
                     <a href="{{ route('potongans.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Potongan</a>
                     <a href="{{ route('laporan-gaji') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Laporan Gaji</a>
-                    <a href="{{ route('laporan-potongan') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Laporan Pot</a>
                     @endif
                     <a href="{{ route('golongans.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Golongan</a>
                 </div>

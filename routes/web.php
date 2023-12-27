@@ -10,7 +10,11 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\PotonganController;
-use App\Models\Departements;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\JabatanController;
+use App\Models\Absensi;
+use App\Models\Departements;    
 use App\Models\Potongan;
 
 /*
@@ -47,11 +51,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('golongans', GolonganController::class);
     Route::resource('gajis', GajiController::class);
     Route::resource('potongans', PotonganController::class);
-    Route::get('departement/export-pdf', [DepartementsController::class, 'exportPdf'])->name('departements.exportPdf');
+    Route::resource('absensis', AbsensiController::class);
+    Route::resource('jabatans', JabatanController::class);
+    Route::resource('jadwals', JadwalController::class);
+    Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
     Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
     Route::get('gaji/export-pdf', [GajiController::class, 'exportPdf'])->name('gajis.exportPdf');
     Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
     Route::get('departement/export-excel', [DepartementController::class, 'exportExcel'])->name('departement.exportExcel');
+    Route::get('jabatan/export-excel', [JabatanController::class, 'exportExcel'])->name('jabatan.exportExcel');
+    
     Route::resource('raks', RakController::class);
     Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
     Route::get('chart-line', [RakController::class, 'chartLine'])->name('raks.chartLine');
@@ -63,11 +72,22 @@ Route::middleware('auth')->group(function () {
 
     //potongan
     Route::middleware('auth')->get('potongan/{bulan}', [PotonganController::class, 'potonganBerdasarkanBulan'])->name('potongan.bulan');
-    Route::get('laporan_potongan', [PotonganController::class, 'tampilkanLaporan'])->name('laporan-potongan');
+    ;
     
     
     // New profile route
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
+
+    //absensi
+
+
+Route::get('laporan_absensi', [AbsensiController::class, 'laporan'])->name('laporan-absensi');
+Route::get('/getDataForTable', [AbsensiController::class, 'getDataForTable'])->name('getDataForTable');
+Route::get('/get-data-all', [AbsensiController::class, 'getDataAll'])->name('get.data.all');
+Route::get('/export-by-month-year', [AbsensiController::class, 'exportByMonthYear'])->name('export.by.month.year');
+
+
+
 });
 
 

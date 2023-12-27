@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('jabatan_id')->default(1);
-            $table->string('golongan_id')->default(1);
+            $table->string('jabatan_id')->default(0);
+            $table->string('golongan_id')->default(0);
             $table->string('nip')->unique();
             $table->timestamp('nip_verified_at')->nullable();
             $table->string('password');

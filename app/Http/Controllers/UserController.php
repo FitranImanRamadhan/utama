@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Positions;
+use App\Models\Jabatan;
 use App\Models\Golongan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -109,13 +109,14 @@ class UserController extends Controller
     public function create(Request $request)
 {
     $title = "Create User / Register";
-    $jbt = Positions::all();
+    $jbt = Jabatan::all();
     $gln = Golongan::all();
 
     if ($request->isMethod('post')) {
         $request->validate([
             'name' => 'required',
             'golongan_id' => 'required',
+            'jabatan_id' => 'required',
             'nip' => 'required|unique:users',
             'password' => 'required',
             'position' => 'required',
@@ -125,6 +126,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->input('name'),
             'golongan_id' => $request->input('golongan_id'),
+            'jabatan_id' => $request->input('jabatan_id'),
             'nip' => $request->input('nip'),
             'password' => Hash::make($request->input('password')),
             'position' => $request->input('position'),
@@ -144,6 +146,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'golongan_id' => 'required',
+            'jabatan_id' => 'required',
             'nip' => 'required|unique:users',
             'password' => 'required',
             'position' => 'required',
@@ -158,7 +161,7 @@ class UserController extends Controller
     {
         
         $title = "Edit Data position";
-        $jbt = Positions::all();
+        $jbt = Jabatan::all();
         $gln = Golongan::all();
         return view('users.edit', compact('user', 'title','jbt','gln'));
     }
@@ -170,6 +173,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'golongan_id' => 'required',
+            'jabatan_id' => 'required',
             'nip' => 'required|unique:users,nip,' . $id,
             'position' => 'required',
         ]);
@@ -177,6 +181,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->golongan_id = $request->golongan_id;
+        $user->jabatan_id = $request->jabatan_id;
         $user->nip = $request->nip;
         $user->position = $request->position;
         $user->save();

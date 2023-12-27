@@ -40,7 +40,7 @@ class User extends Authenticatable
     
     public function jabatan  ()
     {
-        return $this->belongsTo(Positions::class);
+        return $this->belongsTo(Jabatan::class);
     }
 
     public function golongan  ()

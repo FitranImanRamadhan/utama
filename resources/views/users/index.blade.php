@@ -1,4 +1,4 @@
-@extends('tmp1')
+@extends('tmp')
 @section('content')
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -24,7 +24,7 @@
             <th scope="col">NIP</th>
             <th scope="col">Nama</th>
             <th scope="col">Golongan</th>
-            <th scope="col">Pangkat</th>
+            <th scope="col">Jabatan</th>
             <th scope="col">Level</th>  
             <th scope="col">Actions</th>
         </tr>
@@ -37,7 +37,7 @@
             <td>{{$data->nip}}</td>
             <td>{{$data->name}}</td>
             <td>{{ $data->golongan ? $data->golongan->golongan : '0' }}</td>
-            <td>{{ $data->golongan ? $data->golongan->pangkat : '0' }}</td>
+            <td>{{ $data->jabatan ? $data->jabatan->nama_jabatan : '0' }}</td>
             <td>{{$data->position}}</td>
             <td>
                 <form action="{{ route('users.destroy', $data->id) }}" method="POST">
