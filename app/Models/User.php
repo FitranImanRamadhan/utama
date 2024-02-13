@@ -19,34 +19,25 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'position_id',
         'jabatan_id',
         'golongan_id',
         'nip',
         'password',
-        'position',
+        'level',
         'departement'
     ];
 
-    public function gaji ()
-    {
-        return $this->hasMany(Gaji::class);
-    }
+   
 
-    public function potongan ()
+    public function position  ()
     {
-        return $this->hasMany(Potongan::class);
+        return $this->belongsTo(Position::class);
     }
-
     
-    public function jabatan  ()
-    {
-        return $this->belongsTo(Jabatan::class);
-    }
 
-    public function golongan  ()
-    {
-        return $this->belongsTo(Golongan::class);
-    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *

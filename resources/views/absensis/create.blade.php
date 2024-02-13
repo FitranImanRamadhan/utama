@@ -5,7 +5,7 @@
         @csrf
         <div class="row">
             <div class="col-md-3">
-            <label for="bulan">Bulan:</label>
+            <label for="bulan" style="font-weight: bold;">Bulan:</label>
             <select class="form-select" id="bulan" name="bulan">
                 <option value="">Pilih Bulan</option>
                     @for ($i = 1; $i <= 12; $i++)
@@ -14,7 +14,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-            <label for="tahun">Tahun:</label>
+            <label for="tahun" style="font-weight: bold;">Tahun:</label>
                 <select class="form-select" id="tahun" name="tahun">
                 <option value="">Pilih Tahun</option>
                     @for ($year = 2022; $year <= 2025; $year++)
@@ -45,7 +45,7 @@
                         @foreach($np as $user)
                             <tr>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->jabatan->nama_jabatan }}</td>
+                                <td>{{ $user->position->jabatan }}</td>
                                 <td><input type="hidden" name="user_id[]" value="{{ $user->id }}">{{-- Hidden input for user ID --}}
                                     <input class="form-control" type="number" name="hadir[]" placeholder="Hadir" required></td>
                                 <td><input class="form-control" type="number" name="sakit[]" placeholder="Sakit" required></td>

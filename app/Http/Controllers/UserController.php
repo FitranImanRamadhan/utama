@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jabatan;
-use App\Models\Golongan;
+use App\Models\Position;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -102,34 +101,31 @@ class UserController extends Controller
     public function index()
     {
         $title = "Data user";
-        $users = User::with('jabatan','golongan')->paginate(15);
+        $users = User::with('position')->paginate(15);
         return view('users.index', compact(['users', 'title']));
     }
 
     public function create(Request $request)
 {
     $title = "Create User / Register";
-    $jbt = Jabatan::all();
-    $gln = Golongan::all();
+    $pst = Position::all();
 
     if ($request->isMethod('post')) {
         $request->validate([
             'name' => 'required',
-            'golongan_id' => 'required',
-            'jabatan_id' => 'required',
+            'position_id' => 'required',
             'nip' => 'required|unique:users',
             'password' => 'required',
-            'position' => 'required',
+            'level' => 'required',
         ]);
 
         // Create a new user based on the registration data
         $user = User::create([
             'name' => $request->input('name'),
-            'golongan_id' => $request->input('golongan_id'),
-            'jabatan_id' => $request->input('jabatan_id'),
+            'position_id' => $request->input('position_id'),
             'nip' => $request->input('nip'),
             'password' => Hash::make($request->input('password')),
-            'position' => $request->input('position'),
+            'level' => $request->input('level'),
         ]);
 
         // You can also log in the user automatically here if needed
@@ -137,7 +133,7 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User has been created and registered successfully.');
     }
 
-    return view('users.create', compact(['title', 'jbt', 'gln']));
+    return view('users.create', compact(['title','pst']));
 }
 
 
@@ -145,11 +141,10 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'golongan_id' => 'required',
-            'jabatan_id' => 'required',
+            'position_id' => 'required',
             'nip' => 'required|unique:users',
             'password' => 'required',
-            'position' => 'required',
+            'level' => 'required',
         ]);
 
         User::create($request->post());
@@ -160,10 +155,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         
-        $title = "Edit Data position";
-        $jbt = Jabatan::all();
-        $gln = Golongan::all();
-        return view('users.edit', compact('user', 'title','jbt','gln'));
+        $title = "Edit Data User";
+        $pst = Position::all();
+        return view('users.edit', compact('user', 'title','pst'));
     }
 
 
@@ -172,18 +166,16 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'golongan_id' => 'required',
-            'jabatan_id' => 'required',
+            'position_id' => 'required',
             'nip' => 'required|unique:users,nip,' . $id,
-            'position' => 'required',
+            'level' => 'required',
         ]);
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
-        $user->golongan_id = $request->golongan_id;
-        $user->jabatan_id = $request->jabatan_id;
+        $user->position_id = $request->position_id;
         $user->nip = $request->nip;
-        $user->position = $request->position;
+        $user->level = $request->level;
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');

@@ -1,37 +1,56 @@
 @extends('tmp')
+
 @section('content')
-<form action="{{ route('positions.update',$position->id) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>position Name:</strong>
-                <input type="text" name="name" value="{{ $position->name }}" class="form-control" placeholder="position name">
-                @error('name')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ $title }}</div>
+
+                <div class="card-body">
+                    <form action="{{ route('positions.update', $position->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="form-group row">
+                            <label for="jabatan" class="col-md-4 col-form-label text-md-right">Jabatan</label>
+
+                            <div class="col-md-6">
+                                <input id="jabatan" type="text" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan" value="{{ $position->jabatan }}" required autofocus>
+
+                                @error('jabatan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-2">
+                            <label for="gapok" class="col-md-4 col-form-label text-md-right">Gaji Pokok</label>
+
+                            <div class="col-md-6">
+                                <input id="gapok" type="text" class="form-control @error('gapok') is-invalid @enderror" name="gapok" value="{{ $position->gapok }}" required>
+
+                                @error('gapok')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-4">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Submit') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong> keterangan:</strong>
-                <input type="keterangan" name="keterangan" class="form-control" placeholder="position keterangan" value="{{ $position->keterangan }}">
-                @error('keterangan')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong> alias:</strong>
-                <input type="text" name="alias" value="{{ $position->alias }}" class="form-control" placeholder="position alias">
-                @error('alias')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary ml-3">Submit</button>
     </div>
-</form>
+</div>
 @endsection

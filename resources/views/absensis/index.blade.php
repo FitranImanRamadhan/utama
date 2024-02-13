@@ -13,28 +13,29 @@
 <br><br>
 <form id="filterForm" method="GET" action="{{ route('getDataForTable') }}">
 <div class="row">
-            <div class="col-md-3">
-            <label for="bulan">Bulan:</label>
-            <select class="form-select" id="bulan" name="bulan">
-                <option value="">Pilih Bulan</option>
-                    @for ($i = 1; $i <= 12; $i++)
-                        <option value="{{ $i }}">{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
-                    @endfor
-                </select>
-            </div>
-            <div class="col-md-3">
-            <label for="tahun">Tahun:</label>
-                <select class="form-select" id="tahun" name="tahun">
-                <option value="">Pilih Tahun</option>
-                    @for ($year = 2022; $year <= 2025; $year++)
-                        <option value="{{ $year }}">{{ $year }}</option>
-                    @endfor
-                </select>
-            </div>
-        <div class="col-md-2 align-self-end">
-            <button type="submit" class="btn btn-primary">Tampilkan</button>
-        </div>
+    <div class="col-md-3">
+        <label for="bulan" style="font-weight: bold;">Bulan:</label>
+        <select class="form-select" id="bulan" name="bulan">
+            <option value="">Pilih Bulan</option>
+            @for ($i = 1; $i <= 12; $i++)
+                <option value="{{ $i }}">{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
+            @endfor
+        </select>
     </div>
+    <div class="col-md-3">
+        <label for="tahun" style="font-weight: bold;">Tahun:</label>
+        <select class="form-select" id="tahun" name="tahun">
+            <option value="">Pilih Tahun</option>
+            @for ($year = 2022; $year <= 2025; $year++)
+                <option value="{{ $year }}">{{ $year }}</option>
+            @endfor
+        </select>
+    </div>
+    <div class="col-md-2 align-self-end">
+        <button type="submit" class="btn btn-primary">Tampilkan</button>
+    </div>
+</div>
+
 </form>
 
 <br>
@@ -60,7 +61,7 @@
             <td>{{ $no++ }}</td>
             <td>{{ $data->user->nip }}</td>
             <td>{{ $data->user->name }}</td>
-            <td>{{ $data->user->jabatan->nama_jabatan }}</td>
+            <td>{{ $data->user->position->jabatan }}</td>
             <td>{{ $data->hadir }}</td>
             <td>{{ $data->sakit }}</td>
             <td>{{ $data->alpha }}</td>

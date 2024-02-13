@@ -1,67 +1,114 @@
 @extends('tmp')
-@section('content')
 
-@if($errors->any())
-                        @foreach($errors->all() as $err)
-                        <p class="alert alert-danger">{{ $err }}</p>
-                        @endforeach
-                        @endif
-                        <form action="{{ route('register.action') }}" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label>Name <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name="name" value="{{ old('name') }}" />
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ $title }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('users.create') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="mb-3">
-                                <label>nip<span class="text-danger">*</span></label>
-                                <input class="form-control" type="nip" name="nip" value="{{ old('nip') }}" />
+                        </div>
+
+                       <div class="form-group row mt-2">
+                            <label for="nip" class="col-md-4 col-form-label text-md-right">{{ __('NIP') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip') }}" required>
+
+                                @error('nip')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="mb-3">
-                                <label>Password <span class="text-danger">*</span></label>
-                                <input class="form-control" type="password" name="password" />
+                        </div>
+
+                        <div class="form-group row mt-2">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="mb-3">
-                                <label>Password Confirmation<span class="text-danger">*</span></label>
-                                <input class="form-control" type="password" name="password_confirm" />
+                        </div>
+
+                       <div class="form-group row mt-2">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Golongan:</strong>
-                                    <div class="select2-container">
-                                        <select class="form-select select2" name="golongan_id" id="golongan_id" required>
-                                            <option value="" disabled selected>Klik untuk memilih golongan</option>
-                                            @foreach ($gln as $item)
-                                                <option value="{{ $item->id }}">{{ $item->golongan }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+                        </div>
+
+                   <div class="form-group row mt-2">
+                        <label for="position_id" class="col-md-4 col-form-label text-md-right">{{ __('Position') }}</label>
+
+                        <div class="col-md-6">
+                            <select id="position_id" class="form-control @error('position_id') is-invalid @enderror" name="position_id" required>
+                                <option value="" disabled selected>Klik untuk memilih position</option>
+                                @foreach ($pst as $item)
+                                    <option value="{{ $item->id }}">{{ $item->jabatan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                       <div class="form-group row mt-2">
+                            <label for="level" class="col-md-4 col-form-label text-md-right">{{ __('Level') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="level" class="form-control @error('level') is-invalid @enderror" name="level" required>
+                                    <option value="">Select Level</option>
+                                    <option value="1">Admin</option>
+                                    <option value="0">User</option>
+                                </select>
+
+                                @error('level')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Jabatan:</strong>
-                                    <div class="select2-container">
-                                        <select class="form-select select2" name="jabatan_id" id="jabatan_id" required>
-                                            <option value="" disabled selected>Klik untuk memilih jabatan</option>
-                                            @foreach ($jbt as $item)
-                                                <option value="{{ $item->id }}">{{ $item->jabatan }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+                        </div>
+
+                        <div class="form-group row mt-4">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Submit') }}
+                                </button>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Level:</strong>
-                                    <input type="text" name="position" class="form-control" placeholder="Position">
-                                    @error('position')
-                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                             </div>
-                            <div class="mb-3">
-                                <button class="btn btn-primary">Register</button>
-                                <a class="btn btn-danger" href="{{ route('home') }}">Back</a>
-                            </div>
-                        </form>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
+
+
+
+
+

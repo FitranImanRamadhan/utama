@@ -23,6 +23,7 @@
         <tr>
             <th scope="col">No</th>
             <th scope="col">Jabatan</th>
+            <th scope="col">Gaji Pokok</th>
             <th scope="col">Aksi</th>
         </tr>
     </thead>
@@ -32,6 +33,7 @@
         <tr>
             <td>{{ $no++ }}</td>
             <td>{{ $data->jabatan }}</td>
+            <td>{{ $data->gapok }}</td>
             <td>
                 <form action="{{ route('positions.destroy',$data->id) }}" method="Post">
                     <a class="btn btn-warning" href="{{ route('positions.edit',$data->id) }}">Edit</a>

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
             $table->string('jabatan');
+            $table->integer('gapok');
             $table->timestamps();
         });
     }

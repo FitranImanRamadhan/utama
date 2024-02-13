@@ -28,8 +28,9 @@ use App\Models\Potongan;
 |
 */
 Route::get('/', function () {
-    return view('welcome', ['title' => 'Welcome']);
+    return redirect()->route('login'); // Redirect ke route login
 })->name('welcome')->middleware('guest');
+
 
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
@@ -43,40 +44,23 @@ Route::middleware('auth')->group(function () {
     })->name('home');
     Route::get('password', [UserController::class, 'password'])->name('password');
     Route::post('password', [UserController::class, 'password_action'])->name('password.action');
+    Route::get('change-password', [UserController::class, 'password'])->name('change.password');
     // Route Position
     Route::resource('positions', PositionController::class);
     Route::resource('departements', DepartementController::class);
     Route::resource('users', UserController::class);
-    Route::resource('barangs', BarangController::class);
-    Route::resource('golongans', GolonganController::class);
-    Route::resource('gajis', GajiController::class);
-    Route::resource('potongans', PotonganController::class);
     Route::resource('absensis', AbsensiController::class);
-    Route::resource('jabatans', JabatanController::class);
     Route::resource('jadwals', JadwalController::class);
     Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
     Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
-    Route::get('gaji/export-pdf', [GajiController::class, 'exportPdf'])->name('gajis.exportPdf');
     Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
     Route::get('departement/export-excel', [DepartementController::class, 'exportExcel'])->name('departement.exportExcel');
-    Route::get('jabatan/export-excel', [JabatanController::class, 'exportExcel'])->name('jabatan.exportExcel');
-    
-    Route::resource('raks', RakController::class);
-    Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
-    Route::get('chart-line', [RakController::class, 'chartLine'])->name('raks.chartLine');
-    Route::get('chart-line-ajax', [RakController::class, 'chartLineAjax'])->name('raks.chartLineAjax');
-
-    //gaji
-    Route::middleware('auth')->get('gaji/{bulan}', [GajiController::class, 'gajiBerdasarkanBulan'])->name('gaji.bulan');
-    Route::get('laporan_gaji', [GajiController::class, 'tampilkanLaporan'])->name('laporan-gaji');
-
-    //potongan
-    Route::middleware('auth')->get('potongan/{bulan}', [PotonganController::class, 'potonganBerdasarkanBulan'])->name('potongan.bulan');
-    ;
     
     
     // New profile route
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('/users/create', [UserController::class, 'create'])->name('users.create');
+
 
     //absensi
 

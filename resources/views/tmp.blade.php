@@ -73,7 +73,7 @@
               Master
             </button>
               <ul class="dropdown-menu">
-                @if(Auth()->user()->position == "1")
+                @if(Auth()->user()->level == "1")
                 <li class="sidebar-item">
                   <a class="sidebar-link" href="{{ route('users.index') }}" aria-expanded="false">
                     <span>
@@ -83,9 +83,9 @@
                   </a>
                 </li>
                 @endif
-                @if(Auth()->user()->position == "1")
+                @if(Auth()->user()->level == "1")
                 <li class="sidebar-item">
-                  <a class="sidebar-link" href="{{ route('jabatans.index') }}" aria-expanded="false">
+                  <a class="sidebar-link" href="{{ route('positions.index') }}" aria-expanded="false">
                     <span>
                       <i class="ti ti-typography"></i>
                     </span>
@@ -93,7 +93,7 @@
                   </a>
                 </li>
                 @endif
-                @if(Auth()->user()->position == "1")
+                @if(Auth()->user()->level == "1")
                 <li class="sidebar-item">
                   <a class="sidebar-link" href="{{ route('departements.index') }}" aria-expanded="false">
                     <span>
@@ -112,7 +112,7 @@
               Transaksi
             </button>
               <ul class="dropdown-menu">
-                @if(Auth()->user()->position == "1")
+                @if(Auth()->user()->level == "1")
                 <li class="sidebar-item">
                   <a class="sidebar-link" href="{{ route('absensis.index') }}" aria-expanded="false">
                     <span>
@@ -122,9 +122,9 @@
                   </a>
                 </li>
                 @endif
-                @if(Auth()->user()->position == "1")
+                @if(Auth()->user()->level == "1")
                 <li class="sidebar-item">
-                  <a class="sidebar-link" href="{{ route('gajis.index') }}" aria-expanded="false">
+                  <a class="sidebar-link" aria-expanded="false">
                     <span>
                       <i class="ti ti-typography"></i>
                     </span>
@@ -142,7 +142,7 @@
               Laporan
             </button>
               <ul class="dropdown-menu">
-                @if(Auth()->user()->position == "1")
+                @if(Auth()->user()->level == "1")
                 <li class="sidebar-item">
                   <a class="sidebar-link" href="{{ route('laporan-absensi') }}" aria-expanded="false">
                     <span>
@@ -152,7 +152,7 @@
                   </a>
                 </li>
                 @endif
-                @if(Auth()->user()->position == "1")
+                @if(Auth()->user()->level == "1")
                 <li class="sidebar-item">
                   <a class="sidebar-link"  aria-expanded="false">
                     <span>
@@ -183,7 +183,7 @@
               <span class="hide-menu">AUTH</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href=-login.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('change.password') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-login"></i>
                 </span>
@@ -234,7 +234,7 @@
           <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">@yield('title', $title)</h1>
+                    <h1 class="card-title">@yield('title')</h1>
                     @yield('content')
                 </div>
             </div>
@@ -243,21 +243,18 @@
     </div>
   </div>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    @yield('js')
-  <script src="{{ asset ('assets/libs/jquery/dist/jquery.min.js')}}')}}"></script>
-  <script src="{{ asset ('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{ asset ('assets/js/sidebarmenu.js')}}"></script>
-  <script src="{{ asset ('assets/js/app.min.js')}}"></script>
-  <script src="{{ asset ('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
-  <script src="{{ asset ('assets/libs/simplebar/dist/simplebar.js')}}"></script>
-  <script src="{{ asset ('assets/js/dashboard.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Memuat jQuery versi 3.6.0 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script> <!-- Memuat DataTables -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> <!-- Memuat jQuery UI -->
+<script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
+<script src="{{ asset('assets/libs/simplebar/dist/simplebar.js')}}"></script>
+<script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('assets/js/sidebarmenu.js')}}"></script>
+<script src="{{ asset('assets/js/app.min.js')}}"></script>
+<script src="{{ asset('assets/js/dashboard.js')}}"></script>
+@yield('js')
+
   
 </body>
 

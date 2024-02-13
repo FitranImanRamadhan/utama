@@ -23,8 +23,8 @@
             <th scope="col">No</th>
             <th scope="col">NIP</th>
             <th scope="col">Nama</th>
-            <th scope="col">Golongan</th>
             <th scope="col">Jabatan</th>
+            <th scope="col">Gaji Pokok</th>
             <th scope="col">Level</th>  
             <th scope="col">Actions</th>
         </tr>
@@ -36,9 +36,11 @@
             <td>{{ $no++ }}</td>
             <td>{{$data->nip}}</td>
             <td>{{$data->name}}</td>
-            <td>{{ $data->golongan ? $data->golongan->golongan : '0' }}</td>
-            <td>{{ $data->jabatan ? $data->jabatan->nama_jabatan : '0' }}</td>
-            <td>{{$data->position}}</td>
+            <td>{{ $data->position ? $data->position->jabatan : '0' }}</td>
+            <td>{{$data->position->gapok}}</td>
+            <td>
+    {{ $data->level == 0 ? 'User' : 'Admin' }}
+</td>
             <td>
                 <form action="{{ route('users.destroy', $data->id) }}" method="POST">
                     <a class="btn btn-warning" href="{{ route('users.edit', $data->id) }}">Edit</a>

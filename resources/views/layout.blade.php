@@ -6,51 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title',$title)</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />  
-    <link rel="icon" href="{{asset('assets/images/logos/logo2.png')}}" type="image/png">
-
-    <style>
-       body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.container-fluid {
-    position: relative; /* Menetapkan posisi relatif untuk container */
-    background-image: url('assets/images/logos/bg.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 100%;
-}
-
-.container-fluid::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3); /* Mengatur warna latar belakang transparan */
-}
-
-/* Gaya tambahan sesuai kebutuhan Anda */
-
-
-
-
-
-        /* Gaya tambahan sesuai kebutuhan Anda */
-        /* .container-fluid {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        } */
-    </style>
+    
 
 </head>
 

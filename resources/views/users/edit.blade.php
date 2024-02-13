@@ -1,79 +1,93 @@
 @extends('tmp')
+
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ $title }}</div>
 
-<form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT') <!-- Use the PUT method for updating the user -->
+                <div class="card-body">
+                    <form method="POST" action="{{ route('users.update', $user->id) }}">
+                        @csrf
+                        @method('PUT')
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Name:</strong>
-                <input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="Name">
-                @error('name')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
-    </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Golongan:</strong>
-                <div class="select2-container">
-                    <select class="form-select select2" name="golongan_id" id="golongan_id" required>
-                        <option value="" disabled selected>Klik untuk memilih golongan</option>
-                        @foreach ($gln as $item)
-                            <option value="{{ $item->id }}"{{ $user->golongan_id == $item->id ? 'selected' : '' }}>
-                                        {{ $item->golongan }}</option>
-                        @endforeach
-                    </select>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-2">
+                            <label for="nip" class="col-md-4 col-form-label text-md-right">{{ __('NIP') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip', $user->nip) }}" required>
+
+                                @error('nip')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-2">
+                            <label for="position_id" class="col-md-4 col-form-label text-md-right">{{ __('Position') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="position_id" class="form-control @error('position_id') is-invalid @enderror" name="position_id" required>
+                                    <option value="" disabled>Klik untuk memilih position</option>
+                                    @foreach ($pst as $item)
+                                        <option value="{{ $item->id }}" {{ $item->id == $user->position_id ? 'selected' : '' }}>{{ $item->jabatan }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('position_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-2">
+                            <label for="level" class="col-md-4 col-form-label text-md-right">{{ __('Level') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="level" class="form-control @error('level') is-invalid @enderror" name="level" required>
+                                    <option value="" disabled>Select Level</option>
+                                    <option value="1" {{ $user->level == 1 ? 'selected' : '' }}>Admin</option>
+                                    <option value="0" {{ $user->level == 0 ? 'selected' : '' }}>User</option>
+                                </select>
+
+                                @error('level')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-4">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Update') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Jabatan:</strong>
-                <div class="select2-container">
-                    <select class="form-select select2" name="jabatan_id" id="jabatan_id" required>
-                        <option value="" disabled selected>Klik untuk memilih golongan</option>
-                        @foreach ($jbt as $item)
-                            <option value="{{ $item->id }}"{{ $user->jabatan_id == $item->id ? 'selected' : '' }}>
-                                        {{ $item->jabatan }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>nip:</strong>
-                <input type="nip" name="nip" value="{{ $user->nip }}" class="form-control" placeholder="nip">
-                @error('nip')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>password:</strong>
-                <input type="password" name="password" value="{{ $user->password }}" class="form-control" placeholder="password">
-                @error('password')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Level:</strong>
-                <input type="text" name="position" value="{{ $user->position }}" class="form-control" placeholder="Position">
-                @error('position')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary mt-2 ml-3">Update</button>
     </div>
-</form>
+</div>
 @endsection
